@@ -6,13 +6,12 @@ on:
       - main
 
 jobs:
-  job1:
+  conditional:
      runs-on: ubuntu-latest
      steps:
-        - name: Step 1 - Greet
-          run: echo "Hello from step 1"
-  job2:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Job 2 step
-          run: echo "This is Job 2"
+        - name: Print Message
+          run: echo "this always runs"
+        - name: Run only on success
+          if: success()
+          run: echo "Previous step passed"
+          
