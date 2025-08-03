@@ -7,13 +7,17 @@ on:
 
 jobs:
   test:
-     runs-on: ubuntu-latest
-     strategy:
-        matrix:
-         node-version: [16,18,20]
-     steps:
-      - uses: action/setup-node@v4
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-           node-version: ${{ matrix.node-version }}
-      - run: node -v
+          node-version: ${{ matrix.node-version }}
+      - name: Print Node.js version
+        run: node -v
           
